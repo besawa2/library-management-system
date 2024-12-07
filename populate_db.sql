@@ -14,6 +14,16 @@ INSERT INTO books VALUES (2, '1984', 'George Orwell', 'Dystopian', '978045152493
 INSERT INTO books VALUES (3, 'The Great Gatsby', 'F. Scott Fitzgerald', 'Classic', '9780743273565', '1925-04-10', 'Scribner');
 INSERT INTO books VALUES (4, 'Moby-Dick', 'Herman Melville', 'Adventure', '9781503280786', '1851-10-18', 'Harper & Brothers');
 INSERT INTO books VALUES (5, 'Pride and Prejudice', 'Jane Austen', 'Romance', '9780141439518', '1813-01-28', 'T. Egerton');
+INSERT INTO books VALUES (6, 'The Catcher in the Rye', 'J.D. Salinger', 'Classic', '9780316769488', '1951-07-16', 'Little, Brown and Company');
+INSERT INTO books VALUES (7, 'The Hobbit', 'J.R.R. Tolkien', 'Fantasy', '9780547928227', '1937-09-21', 'George Allen & Unwin');
+INSERT INTO books VALUES (8, 'Brave New World', 'Aldous Huxley', 'Dystopian', '9780060850524', '1932-08-31', 'Harper & Brothers');
+INSERT INTO books VALUES (9, 'The Odyssey', 'Homer', 'Epic', '9780140268867', '800 BC', 'Penguin Classics');
+INSERT INTO books VALUES (10, 'War and Peace', 'Leo Tolstoy', 'Historical', '9780199232765', '1869-01-01', 'The Russian Messenger');
+INSERT INTO books VALUES (11, 'The Alchemist', 'Paulo Coelho', 'Adventure', '9780062315007', '1988-05-01', 'HarperOne');
+INSERT INTO books VALUES (12, 'The Shining', 'Stephen King', 'Horror', '9780385121675', '1977-01-28', 'Doubleday');
+INSERT INTO books VALUES (13, 'The Little Prince', 'Antoine de Saint-Exupéry', 'Fable', '9780156012195', '1943-04-06', 'Reynal & Hitchcock');
+INSERT INTO books VALUES (14, 'The Diary of a Young Girl', 'Anne Frank', 'Biography', '9780553296983', '1947-06-25', 'Contact Publishing');
+INSERT INTO books VALUES (15, 'The Road', 'Cormac McCarthy', 'Post-Apocalyptic', '9780307387899', '2006-09-26', 'Alfred A. Knopf');
 INSERT INTO user VALUES (1, 'John Doe', '123 Elm Street, Springfield', '555-1234', 0.00);
 INSERT INTO user VALUES (2, 'Jane Smith', '456 Maple Avenue, Shelbyville', '555-5678', 10.50);
 INSERT INTO user VALUES (3, 'Alice Johnson', '789 Oak Lane, Capital City', '555-9012', 5.00);
