@@ -9,25 +9,25 @@ DELETE FROM events;
 DELETE FROM user;
 DELETE FROM books;
 
-INSERT INTO books VALUES (1, 'To Kill a Mockingbird', 'Harper Lee', 'Fiction', '9780060935467', '1960-07-11', 'J.B. Lippincott & Co.');
-INSERT INTO books VALUES (2, 'The Catcher in the Rye', 'J.D. Salinger', 'Fiction', '9780316769488', '1951-07-16', 'Little, Brown and Company');
-INSERT INTO books VALUES (3, 'The Great Gatsby', 'F. Scott Fitzgerald', 'Fiction', '9780743273565', '1925-04-10', 'Scribner');
+INSERT INTO books VALUES (1, 'To Kill a Mockingbird', 'Harper Lee', 'Fiction', '9780060935467', '1960-07-11', 'J.B. Lippincott & Co.', 'https://example.com/bookcovers/tokillamockingbird.jpg');
+INSERT INTO books VALUES (2, 'The Catcher in the Rye', 'J.D. Salinger', 'Fiction', '9780316769488', '1951-07-16', 'Little, Brown and Company', 'https://example.com/bookcovers/catcherintherye.jpg');
+INSERT INTO books VALUES (3, 'The Great Gatsby', 'F. Scott Fitzgerald', 'Fiction', '9780743273565', '1925-04-10', 'Scribner', 'https://example.com/bookcovers/greatgatsby.jpg');
 
-INSERT INTO books VALUES (4, '1984', 'George Orwell', 'Dystopian', '9780451524935', '1949-06-08', 'Secker & Warburg');
-INSERT INTO books VALUES (5, 'Brave New World', 'Aldous Huxley', 'Dystopian', '9780060850524', '1932-08-31', 'Harper & Brothers');
-INSERT INTO books VALUES (6, 'Fahrenheit 451', 'Ray Bradbury', 'Dystopian', '9781451673319', '1953-10-19', 'Ballantine Books');
+INSERT INTO books VALUES (4, '1984', 'George Orwell', 'Dystopian', '9780451524935', '1949-06-08', 'Secker & Warburg', 'https://example.com/bookcovers/1984.jpg');
+INSERT INTO books VALUES (5, 'Brave New World', 'Aldous Huxley', 'Dystopian', '9780060850524', '1932-08-31', 'Harper & Brothers', 'https://example.com/bookcovers/bravenewworld.jpg');
+INSERT INTO books VALUES (6, 'Fahrenheit 451', 'Ray Bradbury', 'Dystopian', '9781451673319', '1953-10-19', 'Ballantine Books', 'https://example.com/bookcovers/fahrenheit451.jpg');
 
-INSERT INTO books VALUES (7, 'Moby-Dick', 'Herman Melville', 'Adventure', '9781503280786', '1851-10-18', 'Harper & Brothers');
-INSERT INTO books VALUES (8, 'The Hobbit', 'J.R.R. Tolkien', 'Adventure', '9780547928227', '1937-09-21', 'George Allen & Unwin');
-INSERT INTO books VALUES (9, 'The Alchemist', 'Paulo Coelho', 'Adventure', '9780062315007', '1988-05-01', 'HarperOne');
+INSERT INTO books VALUES (7, 'Moby-Dick', 'Herman Melville', 'Adventure', '9781503280786', '1851-10-18', 'Harper & Brothers', 'https://example.com/bookcovers/mobydick.jpg');
+INSERT INTO books VALUES (8, 'The Hobbit', 'J.R.R. Tolkien', 'Adventure', '9780547928227', '1937-09-21', 'George Allen & Unwin', 'https://example.com/bookcovers/thehobbit.jpg');
+INSERT INTO books VALUES (9, 'The Alchemist', 'Paulo Coelho', 'Adventure', '9780062315007', '1988-05-01', 'HarperOne', 'https://example.com/bookcovers/thealchemist.jpg');
 
-INSERT INTO books VALUES (10, 'Pride and Prejudice', 'Jane Austen', 'Romance', '9780141439518', '1813-01-28', 'T. Egerton');
-INSERT INTO books VALUES (11, 'The Fault in Our Stars', 'John Green', 'Romance', '9780525478812', '2012-01-10', 'Dutton Books');
-INSERT INTO books VALUES (12, 'Emma', 'Jane Austen', 'Romance', '9780141439501', '1815-12-23', 'T. Egerton');
+INSERT INTO books VALUES (10, 'Pride and Prejudice', 'Jane Austen', 'Romance', '9780141439518', '1813-01-28', 'T. Egerton', 'https://example.com/bookcovers/prideandprejudice.jpg');
+INSERT INTO books VALUES (11, 'The Fault in Our Stars', 'John Green', 'Romance', '9780525478812', '2012-01-10', 'Dutton Books', 'https://example.com/bookcovers/thefaultinourstars.jpg');
+INSERT INTO books VALUES (12, 'Emma', 'Jane Austen', 'Romance', '9780141439501', '1815-12-23', 'T. Egerton', 'https://example.com/bookcovers/emma.jpg');
 
-INSERT INTO books VALUES (13, 'The Shining', 'Stephen King', 'Horror', '9780385121675', '1977-01-28', 'Doubleday');
-INSERT INTO books VALUES (14, 'Dracula', 'Bram Stoker', 'Horror', '9780141439842', '1897-05-26', 'Penguin Classics');
-INSERT INTO books VALUES (15, 'It', 'Stephen King', 'Horror', '9780452281841', '1986-09-15', 'Viking Press');
+INSERT INTO books VALUES (13, 'The Shining', 'Stephen King', 'Horror', '9780385121675', '1977-01-28', 'Doubleday', 'https://example.com/bookcovers/theshining.jpg');
+INSERT INTO books VALUES (14, 'Dracula', 'Bram Stoker', 'Horror', '9780141439842', '1897-05-26', 'Penguin Classics', 'https://example.com/bookcovers/dracula.jpg');
+INSERT INTO books VALUES (15, 'It', 'Stephen King', 'Horror', '9780452281841', '1986-09-15', 'Viking Press', 'https://example.com/bookcovers/it.jpg');
 
 INSERT INTO user VALUES (1, 'John Doe', '123 Elm Street, Springfield', '555-1234', 0.00);
 INSERT INTO user VALUES (2, 'Jane Smith', '456 Maple Avenue, Shelbyville', '555-5678', 10.50);

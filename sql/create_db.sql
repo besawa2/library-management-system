@@ -18,7 +18,8 @@ CREATE TABLE books (
     Genre VARCHAR(100), 
     ISBN INT, 
     PublishDate DATE, 
-    Publisher VARCHAR(255) 
+    Publisher VARCHAR(255),
+    BookCover VARCHAR(255)
 ); 
 
 CREATE TABLE user ( 
