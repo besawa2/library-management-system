@@ -19,22 +19,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
     $name = $_POST['name'];
 
-    // Hash the password
-    $hashed_password = password_hash($password, PASSWORD_BCRYPT);
-
-    // Insert user into database
-    $stmt = $conn->prepare("INSERT INTO user (username, password, Name) VALUES (?, ?, ?)");
-    if (!$stmt) {
+    // Check if the username already exists
+    $check_stmt = $conn->prepare("SELECT username FROM user WHERE username = ?");
+    if (!$check_stmt) {
         die("Failed to prepare statement: " . $conn->error);
     }
+    $check_stmt->bind_param("s", $username);
+    $check_stmt->execute();
+    $check_result = $check_stmt->get_result();
+
+    if ($check_result->num_rows > 0) {
+        $_SESSION['message'] = "Username is taken, choose another.";
+    } else {
+        // Hash the password
+        $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+
+        // Insert user into database
+        $stmt = $conn->prepare("INSERT INTO user (username, password, Name) VALUES (?, ?, ?)");
+        if (!$stmt) {
+            die("Failed to prepare statement: " . $conn->error);
+        }
         $stmt->bind_param("sss", $username, $hashed_password, $name);
 
-    if ($stmt->execute()) {
-        $_SESSION['message'] = "Successful Login!";
-        header("Location: login.php");
-        exit();
-    } else {
-        $_SESSION['message'] = "Error during registration. Try again.";
+        if ($stmt->execute()) {
+            $_SESSION['message'] = "Registration successful. Please log in.";
+            header("Location: login.php");
+            exit();
+        } else {
+            $_SESSION['message'] = "Error during registration. Try again.";
+        }
     }
 }
 ?>
