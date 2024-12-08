@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 $host = 'localhost';
 $dbuser = 'root';
 $dbpass = '';
@@ -31,12 +33,20 @@ $conn->close();
   <link rel="stylesheet" href="styles/index.css">
 </head>
 <body>
-  <button class="login-button">Login</button>
+  <div class="header">
+    Library Management System
 
-  <div class="header">Library Management System</div>
+    <?php if (isset($_SESSION['message'])): ?>
+    <p style="color: green;"><?php echo $_SESSION['message']; unset($_SESSION['message']); ?></p>
+    <?php endif; ?>
+    <?php if (isset($_SESSION['username'])): ?>
+      <span style="float:right;">Welcome, <?= htmlspecialchars($_SESSION['username']); ?> | <a href="logout.php">Logout</a></span>
+    <?php else: ?>
+      <button class="login-button" onclick="window.location.href='login.php'">Login</button>
+    <?php endif; ?>
+  </div>
 
   <div class="main-container">
-    <!-- Sidebar with a dropdown and buttons -->
     <div class="sidebar">
       <form method="GET" action="">
         <select name="genre" id="genre">

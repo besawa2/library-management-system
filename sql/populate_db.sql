@@ -9,6 +9,12 @@ DELETE FROM events;
 DELETE FROM user;
 DELETE FROM books;
 
+INSERT INTO user (UserID, username, password, Name) VALUES (1, 'user1', 'password1', 'John Doe');
+INSERT INTO user (UserID, username, password, Name) VALUES (2, 'user2', 'password2', 'Jane Doe');
+INSERT INTO user (UserID, username, password, Name) VALUES (3, 'user3', 'password3', 'Alice Johnson');
+INSERT INTO user (UserID, username, password, Name) VALUES (4, 'user4', 'password4', 'Michael Green');
+INSERT INTO user (UserID, username, password, Name) VALUES (5, 'user5', 'password5', 'Linda White');
+
 INSERT INTO books VALUES (1, 'To Kill a Mockingbird', 'Harper Lee', 'Fiction', '9780060935467', '1960-07-11', 'J.B. Lippincott & Co.', 'https://example.com/bookcovers/tokillamockingbird.jpg');
 INSERT INTO books VALUES (2, 'The Catcher in the Rye', 'J.D. Salinger', 'Fiction', '9780316769488', '1951-07-16', 'Little, Brown and Company', 'https://example.com/bookcovers/catcherintherye.jpg');
 INSERT INTO books VALUES (3, 'The Great Gatsby', 'F. Scott Fitzgerald', 'Fiction', '9780743273565', '1925-04-10', 'Scribner', 'https://example.com/bookcovers/greatgatsby.jpg');
@@ -29,36 +35,26 @@ INSERT INTO books VALUES (13, 'The Shining', 'Stephen King', 'Horror', '97803851
 INSERT INTO books VALUES (14, 'Dracula', 'Bram Stoker', 'Horror', '9780141439842', '1897-05-26', 'Penguin Classics', 'https://example.com/bookcovers/dracula.jpg');
 INSERT INTO books VALUES (15, 'It', 'Stephen King', 'Horror', '9780452281841', '1986-09-15', 'Viking Press', 'https://example.com/bookcovers/it.jpg');
 
-INSERT INTO user VALUES (1, 'John Doe', '123 Elm Street, Springfield', '555-1234', 0.00);
-INSERT INTO user VALUES (2, 'Jane Smith', '456 Maple Avenue, Shelbyville', '555-5678', 10.50);
-INSERT INTO user VALUES (3, 'Alice Johnson', '789 Oak Lane, Capital City', '555-9012', 5.00);
-INSERT INTO user VALUES (4, 'Bob Brown', '101 Pine Court, Ogdenville', '555-3456', 0.00);
-INSERT INTO user VALUES (5, 'Emily White', '202 Birch Drive, North Haverbrook', '555-7890', 2.00);
-INSERT INTO rentals VALUES (1, 1, '2024-02-01', '2024-02-15', '2024-02-10', 1);
-INSERT INTO rentals VALUES (2, 2, '2024-03-01', '2024-03-15', '2024-03-12', 2);
-INSERT INTO rentals VALUES (3, 3, '2024-04-01', '2024-04-15', '2024-04-14', 3);
-INSERT INTO rentals VALUES (4, 4, '2024-05-01', '2024-05-15', '2024-05-13', 4);
-INSERT INTO rentals VALUES (5, 5, '2024-06-01', '2024-06-15', NULL, 5);
-INSERT INTO user_profile VALUES (1, 'John Doe', 'Avid reader of classics.', 'Classic', 'To Kill a Mockingbird', 'john_profile.jpg');
-INSERT INTO user_profile VALUES (2, 'Jane Smith', 'Loves dystopian novels.', 'Dystopian', '1984', 'jane_profile.jpg');
-INSERT INTO user_profile VALUES (3, 'Alice Johnson', 'Enjoys adventure stories.', 'Adventure', 'Moby-Dick', 'alice_profile.jpg');
-INSERT INTO user_profile VALUES (4, 'Bob Brown', 'Fan of historical fiction.', 'Historical', 'War and Peace', 'bob_profile.jpg');
-INSERT INTO user_profile VALUES (5, 'Emily White', 'Romance novels are my favorite.', 'Romance', 'Pride and Prejudice', 'emily_profile.jpg');
-INSERT INTO events VALUES (1, '2024-03-01', '2024-03-03', 'Library Hall A', 'Spring Book Fair');
-INSERT INTO events VALUES (2, '2024-05-15', '2024-05-15', 'Library Conference Room', 'Author Meet-and-Greet with Harper Lee');
-INSERT INTO events VALUES (3, '2024-07-20', '2024-07-20', 'Library Main Hall', 'Summer Reading Challenge Finale');
-INSERT INTO events VALUES (4, '2024-10-10', '2024-10-10', 'Library Hall B', 'Fall Lecture Series: Classics Revisited');
-INSERT INTO events VALUES (5, '2024-12-05', '2024-12-05', 'Library Auditorium', 'Holiday Book Drive Gala');
 INSERT INTO staff VALUES (1, 'Linda Green', '123 Library Ave, Springfield', 'Librarian', 45000.00);
 INSERT INTO staff VALUES (2, 'Tom Carter', '456 Paper St, Shelbyville', 'Assistant Librarian', 35000.00);
 INSERT INTO staff VALUES (3, 'Sarah Miles', '789 Book Ln, Capital City', 'Event Coordinator', 40000.00);
 INSERT INTO staff VALUES (4, 'Michael Reid', '101 Stack Rd, Ogdenville', 'Archivist', 42000.00);
 INSERT INTO staff VALUES (5, 'Emily White', '202 Story Ct, North Haverbrook', 'Library Technician', 30000.00);
+
+INSERT INTO events VALUES (1, '2024-03-01', '2024-03-03', 'Library Hall A', 'Spring Book Fair');
+INSERT INTO events VALUES (2, '2024-05-15', '2024-05-15', 'Library Conference Room', 'Author Meet-and-Greet with Harper Lee');
+INSERT INTO events VALUES (3, '2024-07-20', '2024-07-20', 'Library Main Hall', 'Summer Reading Challenge Finale');
+INSERT INTO events VALUES (4, '2024-10-10', '2024-10-10', 'Library Hall B', 'Fall Lecture Series: Classics Revisited');
+INSERT INTO events VALUES (5, '2024-12-05', '2024-12-05', 'Library Auditorium', 'Holiday Book Drive Gala');
+
+INSERT INTO rentals VALUES (1, 1, '2024-02-01', '2024-02-15', '2024-02-10', 1);
+INSERT INTO rentals VALUES (2, 2, '2024-03-01', '2024-03-15', '2024-03-12', 2);
+INSERT INTO rentals VALUES (3, 3, '2024-04-01', '2024-04-15', '2024-04-14', 3);
+
 INSERT INTO reservations VALUES (1, 1, 1, 1, '2024-02-01', '2024-02-15');
 INSERT INTO reservations VALUES (2, 2, 2, 2, '2024-03-01', '2024-03-15');
 INSERT INTO reservations VALUES (3, 3, 3, 3, '2024-04-01', '2024-04-15');
-INSERT INTO reservations VALUES (4, 4, 4, 4, '2024-05-01', '2024-05-15');
-INSERT INTO reservations VALUES (5, 5, 5, 5, '2024-06-01', '2024-06-15');
+
 INSERT INTO penalties VALUES (1, 1, 2, '2024-03-16', 5.00);
 INSERT INTO penalties VALUES (2, 3, 3, '2024-04-16', 10.00);
 INSERT INTO penalties VALUES (3, 4, 4, '2024-05-16', 2.50);

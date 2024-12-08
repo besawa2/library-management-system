@@ -22,13 +22,12 @@ CREATE TABLE books (
     BookCover VARCHAR(255)
 ); 
 
-CREATE TABLE user ( 
-    UserID INT PRIMARY KEY, 
-    Name VARCHAR(255), 
-    Address VARCHAR(255), 
-    PhoneNumber VARCHAR(15), 
-    PenaltyBalance DECIMAL(10,2) DEFAULT 0.00 
-); 
+CREATE TABLE user (
+    UserID INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    Name VARCHAR(255) NOT NULL
+);
 
 CREATE TABLE rentals ( 
     RentalID INT PRIMARY KEY, 
@@ -43,13 +42,16 @@ CREATE TABLE rentals (
 
 CREATE TABLE user_profile ( 
     UserID INT PRIMARY KEY, 
-    Name VARCHAR(255), 
-    Description VARCHAR(255), 
+    Description VARCHAR(255),
+    Address VARCHAR(255),
+    PhoneNumber VARCHAR(15),
+    PenaltyBalance DECIMAL(10,2) DEFAULT 0.00,
     FaveGenre VARCHAR(100), 
     FaveBook VARCHAR(255), 
     ProfilePicture VARCHAR(255), 
-    FOREIGN KEY (UserID) REFERENCES user(UserID) 
-); 
+    FOREIGN KEY (UserID) REFERENCES user(UserID)
+);
+
 
 CREATE TABLE events ( 
     EventID INT PRIMARY KEY, 
