@@ -42,7 +42,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bind_param("sss", $username, $hashed_password, $name);
 
         if ($stmt->execute()) {
-            $_SESSION['message'] = "Registration successful. Please log in.";
             header("Location: login.php");
             exit();
         } else {
