@@ -19,8 +19,10 @@ CREATE TABLE books (
     ISBN INT, 
     PublishDate DATE, 
     Publisher VARCHAR(255),
-    BookCover VARCHAR(255)
-); 
+    BookCover VARCHAR(255),
+    BookStatus ENUM('available', 'rented', 'returned') DEFAULT 'available'
+);
+
 
 CREATE TABLE user (
     UserID INT AUTO_INCREMENT PRIMARY KEY,
