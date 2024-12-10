@@ -20,7 +20,7 @@ if ($conn->connect_error) {
 $user_id = $_SESSION['user_id'];
 
 $query = "
-    SELECT r.RentalID, b.Title, b.Author, b.Genre, b.BookStatus, r.CheckoutDate, r.DueDate
+    SELECT r.RentalID, b.Title, b.Author, b.Genre, r.BookID, r.CheckoutDate, r.DueDate
     FROM rentals r
     JOIN books b ON r.BookID = b.BookID
     WHERE r.UserID = ? AND r.DateReturned IS NULL
@@ -68,7 +68,7 @@ $result = $stmt->get_result();
                         <td>
                             <form action="return_book.php" method="POST">
                                 <input type="hidden" name="rental_id" value="<?php echo $rental['RentalID']; ?>">
-                                <input type="hidden" name="BookStatus" value="<?php echo $rental['BookStatus']; ?>">
+                                <input type="hidden" name="book_id" value="<?php echo $rental['BookID']; ?>">
                                 <button type="submit" name="return_book">Return Book</button>
                             </form>
                         </td>
