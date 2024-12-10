@@ -12,18 +12,36 @@ if ($conn->connect_error) {
     die("Database connection failed: " . $conn->connect_error);
 }
 
+// Handle pagination
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$limit = 9;
+$offset = ($page - 1) * $limit;
+
 // Handle genre filter request
 $genre_filter = isset($_GET['genre']) ? $_GET['genre'] : '';
 
-// Dynamically query the database based on the selected genre
+// Dynamically query the database based on the selected genre and pagination
 if ($genre_filter) {
-    $sql = $conn->prepare("SELECT title, author FROM books WHERE genre = ? LIMIT 9");
-    $sql->bind_param("s", $genre_filter);
+    $sql = $conn->prepare("SELECT title, author FROM books WHERE genre = ? LIMIT ?, ?");
+    $sql->bind_param("sii", $genre_filter, $offset, $limit);
 } else {
-    $sql = $conn->prepare("SELECT title, author FROM books LIMIT 9");
+    $sql = $conn->prepare("SELECT title, author FROM books LIMIT ?, ?");
+    $sql->bind_param("ii", $offset, $limit);
 }
 $sql->execute();
 $result = $sql->get_result();
+
+// Fetch the total number of books for pagination
+$total_sql = $conn->prepare("SELECT COUNT(*) AS total FROM books" . ($genre_filter ? " WHERE genre = ?" : ""));
+if ($genre_filter) {
+    $total_sql->bind_param("s", $genre_filter);
+}
+$total_sql->execute();
+$total_result = $total_sql->get_result();
+$total_row = $total_result->fetch_assoc();
+$total_books = $total_row['total'];
+$total_pages = ceil($total_books / $limit);
+
 $conn->close();
 ?>
 
@@ -71,13 +89,22 @@ $conn->close();
           while ($row = $result->fetch_assoc()) { 
             echo "<td>{$row['title']}<br><small>{$row['author']}</small></td>";
             $counter++;
-            if ($counter % 3 == 0 && $counter != 9) {
+            if ($counter % 3 == 0 && $counter != $limit) {
               echo "</tr><tr>";
             }
           } 
           ?>
         </tr>
       </table>
+
+      <div class="pagination">
+        <?php if ($page > 1): ?>
+          <a href="?page=<?= $page - 1 ?>&genre=<?= htmlspecialchars($genre_filter) ?>" class="pagination-button">&laquo; <b>Prev</b></a>
+        <?php endif; ?>
+        <?php if ($page < $total_pages): ?>
+          <a href="?page=<?= $page + 1 ?>&genre=<?= htmlspecialchars($genre_filter) ?>" class="pagination-button"><b>Next</b> &raquo;</a>
+        <?php endif; ?>
+      </div>
     </div>
   </div>
 </body>

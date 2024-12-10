@@ -35,6 +35,16 @@ INSERT INTO books VALUES (13, 'The Shining', 'Stephen King', 'Horror', '97803851
 INSERT INTO books VALUES (14, 'Dracula', 'Bram Stoker', 'Horror', '9780141439842', '1897-05-26', 'Penguin Classics', 'https://example.com/bookcovers/dracula.jpg');
 INSERT INTO books VALUES (15, 'It', 'Stephen King', 'Horror', '9780452281841', '1986-09-15', 'Viking Press', 'https://example.com/bookcovers/it.jpg');
 
+INSERT INTO books VALUES (16, 'Of Mice and Men', 'John Steinbeck', 'Fiction', '9780140177398', '1937-02-06', 'Penguin Books', 'https://example.com/bookcovers/ofmiceandmen.jpg');
+INSERT INTO books VALUES (17, 'The Road', 'Cormac McCarthy', 'Fiction', '9780307387899', '2006-09-26', 'Alfred A. Knopf', 'https://example.com/bookcovers/theroad.jpg');
+INSERT INTO books VALUES (18, 'Beloved', 'Toni Morrison', 'Fiction', '9781400033416', '1987-09-16', 'Knopf', 'https://example.com/bookcovers/beloved.jpg');
+INSERT INTO books VALUES (19, 'The Book Thief', 'Markus Zusak', 'Fiction', '9780375842207', '2005-09-01', 'Knopf Books', 'https://example.com/bookcovers/thebookthief.jpg');
+INSERT INTO books VALUES (20, 'Life of Pi', 'Yann Martel', 'Fiction', '9780156027328', '2001-09-11', 'Knopf Canada', 'https://example.com/bookcovers/lifeofpi.jpg');
+INSERT INTO books VALUES (21, 'The Kite Runner', 'Khaled Hosseini', 'Fiction', '9781594631931', '2003-05-29', 'Riverhead Books', 'https://example.com/bookcovers/thekiterunner.jpg');
+INSERT INTO books VALUES (22, 'A Thousand Splendid Suns', 'Khaled Hosseini', 'Fiction', '9781594483859', '2007-05-22', 'Riverhead Books', 'https://example.com/bookcovers/athousandsplendidsuns.jpg');
+INSERT INTO books VALUES (23, 'The Help', 'Kathryn Stockett', 'Fiction', '9780399155345', '2009-02-10', 'Amy Einhorn Books', 'https://example.com/bookcovers/thehelp.jpg');
+INSERT INTO books VALUES (24, 'The Night Circus', 'Erin Morgenstern', 'Fiction', '9780307744432', '2011-09-13', 'Doubleday', 'https://example.com/bookcovers/thenightcircus.jpg');
+
 INSERT INTO staff VALUES (1, 'Linda Green', '123 Library Ave, Springfield', 'Librarian', 45000.00);
 INSERT INTO staff VALUES (2, 'Tom Carter', '456 Paper St, Shelbyville', 'Assistant Librarian', 35000.00);
 INSERT INTO staff VALUES (3, 'Sarah Miles', '789 Book Ln, Capital City', 'Event Coordinator', 40000.00);
