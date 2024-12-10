@@ -60,8 +60,11 @@ $conn->close();
     Library Management System
 
     <?php if (isset($_SESSION['message'])): ?>
-        <p style="color: green;"><?php echo $_SESSION['message']; echo "hello"; unset($_SESSION['message']); ?></p>
+        <p style="color: green;"><?php echo $_SESSION['message']; unset($_SESSION['message']); ?></p>
     <?php endif; ?>
+    <?php if (isset($_SESSION['error'])): ?>
+    <p style="color: red;"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></p>
+<?php endif; ?>
     <?php if (isset($_SESSION['username'])): ?>
         <span style="float:right;">Welcome, <?= htmlspecialchars($_SESSION['username']); ?> | <a href="logout.php">Logout</a></span>
     <?php else: ?>

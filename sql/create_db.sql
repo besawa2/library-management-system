@@ -12,7 +12,7 @@ DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS books;
 
 CREATE TABLE books ( 
-    BookID INT PRIMARY KEY, 
+    BookID INT AUTO_INCREMENT PRIMARY KEY, 
     Title VARCHAR(255), 
     Author VARCHAR(255), 
     Genre VARCHAR(100), 
@@ -30,7 +30,7 @@ CREATE TABLE user (
 );
 
 CREATE TABLE rentals ( 
-    RentalID INT PRIMARY KEY, 
+    RentalID INT AUTO_INCREMENT PRIMARY KEY, 
     BookID INT, 
     CheckoutDate DATE, 
     DueDate DATE, 
@@ -41,7 +41,7 @@ CREATE TABLE rentals (
 ); 
 
 CREATE TABLE user_profile ( 
-    UserID INT PRIMARY KEY, 
+    UserID INT AUTO_INCREMENT PRIMARY KEY, 
     Description VARCHAR(255),
     Address VARCHAR(255),
     PhoneNumber VARCHAR(15),
@@ -54,7 +54,7 @@ CREATE TABLE user_profile (
 
 
 CREATE TABLE events ( 
-    EventID INT PRIMARY KEY, 
+    EventID INT AUTO_INCREMENT PRIMARY KEY, 
     StartDate DATE, 
     EndDate DATE, 
     Location VARCHAR(255), 
@@ -62,7 +62,7 @@ CREATE TABLE events (
 ); 
 
 CREATE TABLE staff ( 
-    StaffID INT PRIMARY KEY, 
+    StaffID INT AUTO_INCREMENT PRIMARY KEY, 
     Name VARCHAR(255), 
     Address VARCHAR(255), 
     Position VARCHAR(100), 
@@ -70,7 +70,7 @@ CREATE TABLE staff (
 ); 
 
 CREATE TABLE reservations ( 
-    ReserveID INT PRIMARY KEY, 
+    ReserveID INT AUTO_INCREMENT PRIMARY KEY, 
     BookID INT, 
     UserID INT, 
     ReserveEndDate DATE, 
@@ -79,7 +79,7 @@ CREATE TABLE reservations (
 ); 
 
 CREATE TABLE penalties ( 
-    PenaltyID INT PRIMARY KEY, 
+    PenaltyID INT AUTO_INCREMENT PRIMARY KEY, 
     BookID INT, 
     UserID INT, 
     PenaltyDate DATE, 

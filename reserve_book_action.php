@@ -41,11 +41,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             VALUES (?, ?, ?)
         ");
         $insert_query->bind_param("iis", $book_id, $user_id, $reserve_date);
-
         if ($insert_query->execute()) {
             $_SESSION['message'] = "Book reserved successfully until $reserve_date.";
         } else {
-            $_SESSION['error'] = "Could not reserve the book. Please try again.";
+            $_SESSION['error'] = "Could not reserve the book. Please try again." . $book_id . $user_id . $reserve_date;
         }
     }
 
