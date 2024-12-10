@@ -73,12 +73,9 @@ CREATE TABLE reservations (
     ReserveID INT PRIMARY KEY, 
     BookID INT, 
     UserID INT, 
-    StaffID INT, 
-    ReserveDate DATE, 
     ReserveEndDate DATE, 
     FOREIGN KEY (BookID) REFERENCES books(BookID), 
-    FOREIGN KEY (UserID) REFERENCES user(UserID), 
-    FOREIGN KEY (StaffID) REFERENCES staff(StaffID) 
+    FOREIGN KEY (UserID) REFERENCES user(UserID)
 ); 
 
 CREATE TABLE penalties ( 

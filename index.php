@@ -12,20 +12,17 @@ if ($conn->connect_error) {
     die("Database connection failed: " . $conn->connect_error);
 }
 
-// Handle pagination
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $limit = 9;
 $offset = ($page - 1) * $limit;
 
-// Handle genre filter request
 $genre_filter = isset($_GET['genre']) ? $_GET['genre'] : '';
 
-// Dynamically query the database based on the selected genre and pagination
 if ($genre_filter) {
-    $sql = $conn->prepare("SELECT title, author FROM books WHERE genre = ? LIMIT ?, ?");
+    $sql = $conn->prepare("SELECT title, author, BookCover FROM books WHERE genre = ? LIMIT ?, ?");
     $sql->bind_param("sii", $genre_filter, $offset, $limit);
 } else {
-    $sql = $conn->prepare("SELECT title, author FROM books LIMIT ?, ?");
+    $sql = $conn->prepare("SELECT title, author, BookCover FROM books LIMIT ?, ?");
     $sql->bind_param("ii", $offset, $limit);
 }
 $sql->execute();
@@ -49,20 +46,29 @@ $conn->close();
 <html>
 <head>
   <link rel="stylesheet" href="styles/index.css">
+  <style>
+    img {
+        max-width: 200px;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+  </style>
 </head>
 <body>
-  <div class="header">
+<div class="header">
     Library Management System
 
     <?php if (isset($_SESSION['message'])): ?>
-    <p style="color: green;"><?php echo $_SESSION['message']; unset($_SESSION['message']); ?></p>
+        <p style="color: green;"><?php echo $_SESSION['message']; echo "hello"; unset($_SESSION['message']); ?></p>
     <?php endif; ?>
     <?php if (isset($_SESSION['username'])): ?>
-      <span style="float:right;">Welcome, <?= htmlspecialchars($_SESSION['username']); ?> | <a href="logout.php">Logout</a></span>
+        <span style="float:right;">Welcome, <?= htmlspecialchars($_SESSION['username']); ?> | <a href="logout.php">Logout</a></span>
     <?php else: ?>
-      <button class="login-button" onclick="window.location.href='login.php'">Login</button>
+        <button class="login-button" onclick="window.location.href='login.php'">Login</button>
     <?php endif; ?>
-  </div>
+</div>
+
 
   <div class="main-container">
     <div class="sidebar">
@@ -77,17 +83,20 @@ $conn->close();
         </select>
         <br><br>
         <button type="submit" name="filter" class="sidegrid-button">Filter</button>
+        <button class="sidegrid-button" onclick="window.location.href='reserve_book.php'; return false;">Reserve a Book</button> 
       </form>
     </div>
 
-    <!-- Main content displaying dynamic books table -->
     <div class="content">
       <table>
         <tr>
           <?php 
           $counter = 0; 
           while ($row = $result->fetch_assoc()) { 
-            echo "<td>{$row['title']}<br><small>{$row['author']}</small></td>";
+            echo "<td>
+                    <img src='{$row['BookCover']}' alt='{$row['title']} cover'>
+                    <p>{$row['title']}<br><small>{$row['author']}</small></p>
+                  </td>";
             $counter++;
             if ($counter % 3 == 0 && $counter != $limit) {
               echo "</tr><tr>";
