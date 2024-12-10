@@ -87,6 +87,8 @@ $conn->close();
         <br><br>
         <button type="submit" name="filter" class="sidegrid-button">Filter</button>
         <button class="sidegrid-button" onclick="window.location.href='reserve_book.php'; return false;">Reserve a Book</button> 
+        <button class="sidegrid-button" onclick="window.location.href='donate_books.php'; return false;">Donate Books</button> 
+
       </form>
     </div>
 
