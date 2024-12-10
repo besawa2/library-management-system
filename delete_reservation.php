@@ -12,7 +12,6 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Ensure the user is logged in
 if (!isset($_SESSION['user_id'])) {
     die("You must log in first.");
 }
@@ -20,7 +19,6 @@ if (!isset($_SESSION['user_id'])) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $reservation_id = $_POST['reservation_id'];
 
-    // Verify the reservation belongs to the logged-in user
     $verify_query = $conn->prepare("
         SELECT ReserveID 
         FROM reservations 
@@ -34,7 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $verify_result = $verify_query->get_result();
 
     if ($verify_result->num_rows > 0) {
-        // Delete the reservation
         $delete_query = $conn->prepare("
             DELETE FROM reservations 
             WHERE ReserveID = ?

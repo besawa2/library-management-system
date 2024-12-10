@@ -19,10 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 
-    $user_id = $_SESSION['user_id']; // Retrieve logged-in user ID from the session
+    $user_id = $_SESSION['user_id']; 
     $book_id = $_POST['book_id'];
 
-    // Check if the book is already reserved
     $check_query = $conn->prepare("
         SELECT * 
         FROM reservations 

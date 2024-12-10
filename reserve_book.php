@@ -12,15 +12,13 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Ensure the user is logged in
 if (!isset($_SESSION['user_id'])) {
     die("You must log in first to view or reserve books.");
 }
 
-// Get the logged-in user's ID
 $user_id = $_SESSION['user_id'];
 
-// Fetch the user's reservations
+// fetch the users reservations
 $reservations_query = "
 SELECT r.ReserveID, b.title, r.ReserveEndDate
 FROM reservations r
@@ -36,7 +34,7 @@ $reservations_stmt->bind_param("i", $user_id);
 $reservations_stmt->execute();
 $reservations_result = $reservations_stmt->get_result();
 
-// Fetch only books that don't have active reservations
+// fetch only books that dont have active reservations
 $books_query = "
 SELECT b.BookID, b.title
 FROM books b

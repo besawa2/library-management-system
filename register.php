@@ -13,13 +13,11 @@ if ($conn->connect_error) {
     die("Database connection failed: " . $conn->connect_error);
 }
 
-// Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
     $name = $_POST['name'];
 
-    // Check if the username already exists
     $check_stmt = $conn->prepare("SELECT username FROM user WHERE username = ?");
     if (!$check_stmt) {
         die("Failed to prepare statement: " . $conn->error);
@@ -31,10 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($check_result->num_rows > 0) {
         $_SESSION['message'] = "Username is taken, choose another.";
     } else {
-        // Hash the password
         $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
-        // Insert user into database
         $stmt = $conn->prepare("INSERT INTO user (username, password, Name) VALUES (?, ?, ?)");
         if (!$stmt) {
             die("Failed to prepare statement: " . $conn->error);
