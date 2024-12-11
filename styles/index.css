@@ -49,15 +49,13 @@ body {
 }
 
 .main-container {
-    display: flex; 
-    height: calc(100vh - 81px); 
+    display: flex;
+    align-items: stretch; 
 }
-
 .sidebar {
     width: 12%;
     background-color: #e2e2e2;
     padding: 20px;
-    height: 146%;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -98,23 +96,23 @@ table td:hover {
 }
 
 a {
-    text-decoration: none;  /* Removes underline */
-    color: inherit;         /* Keeps the text color as default */
+    text-decoration: none;  
+    color: inherit;        
 }
 
 a img {
-    cursor: pointer;  /* Change cursor to indicate that the image is clickable */
+    cursor: pointer; 
 }
 .pagination-button {
     background-color: #4CAF50;
     color: white;
-    padding: 12px 25px;  /* Adjust padding to make the buttons bigger */
+    padding: 12px 25px;  
     border-radius: 5px;
     cursor: pointer;
-    font-size: 18px;  /* Increase the font size */
-    text-decoration: none; /* Removes the underline */
-    display: inline-block;  /* Ensures buttons are inline */
-    margin: 10px;  /* Adds space between the buttons */
+    font-size: 18px;  
+    text-decoration: none; 
+    display: inline-block;  
+    margin: 10px;  
 }
 
 .pagination-button:hover {

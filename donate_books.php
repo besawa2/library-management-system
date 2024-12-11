@@ -12,17 +12,14 @@ if ($conn->connect_error) {
     die("Database connection failed: " . $conn->connect_error);
 }
 
-// Default book cover URL
 $default_cover = "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781787550360/classic-book-cover-foiled-journal-9781787550360_hr.jpg";
 
-// Handle book donation or update
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $conn->begin_transaction();
 
     try {
         // Check if this is a donation or update request
         if (isset($_POST['title']) && isset($_POST['author'])) {
-            // Donation: Insert new book
             $title = trim($_POST['title']);
             $author = trim($_POST['author']);
             $isbn = trim($_POST['isbn']);
@@ -34,12 +31,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // If no cover URL is provided, use the default cover
             $book_cover = empty($book_cover) ? $default_cover : $book_cover;
 
-            // Validate required fields
             if (empty($title) || empty($author) || empty($isbn)) {
                 throw new Exception("Title, Author, and ISBN are required fields.");
             }
 
-            // Prepare query to insert the donated book into the database
             $donate_query = $conn->prepare("
                 INSERT INTO books (Title, Author, ISBN, Genre, PublishDate, Publisher, BookCover, BookStatus)
                 VALUES (?, ?, ?, ?, ?, ?, ?, 'available')
@@ -82,12 +77,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $update_query->close();
         }
 
-        // Commit the transaction
         $conn->commit();
         header("Location: index.php");
         exit();
     } catch (Exception $e) {
-        // Rollback the transaction on error
         $conn->rollback();
         $_SESSION['error'] = $e->getMessage();
         header("Location: index.php");
@@ -160,7 +153,6 @@ $conn->close();
     <h2>Update a Donated Book</h2>
 
     <?php if ($books_result->num_rows > 0): ?>
-        <!-- Form for updating books -->
         <form action="donate_books.php" method="POST">
             <label for="book_id">Select a Book to Update:</label>
             <select name="book_id" id="book_id" required>

@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($check_result->num_rows > 0) {
         $_SESSION['error'] = "Sorry, this book is already reserved.";
     } else {
-        $reserve_date = date('Y-m-d', strtotime('+7 days')); // Default to 7-day reservation
+        $reserve_date = date('Y-m-d', strtotime('+7 days')); // default to 7 day reservation
         $insert_query = $conn->prepare("
             INSERT INTO reservations (BookID, UserID, ReserveEndDate) 
             VALUES (?, ?, ?)
