@@ -158,58 +158,60 @@ $conn->close();
 
     <h2>Update a Donated Book</h2>
 
-    <form action="donate_books.php" method="POST">
-        <label for="book_id">Select a Book to Update:</label>
-        <select name="book_id" id="book_id" required>
-            <?php if ($books_result->num_rows > 0): ?>
+    <?php if ($books_result->num_rows > 0): ?>
+        <!-- Form for updating books -->
+        <form action="donate_books.php" method="POST">
+            <label for="book_id">Select a Book to Update:</label>
+            <select name="book_id" id="book_id" required>
                 <?php while ($book = $books_result->fetch_assoc()): ?>
                     <option value="<?php echo $book['BookID']; ?>">
                         <?php echo $book['Title']; ?>
                     </option>
                 <?php endwhile; ?>
-            <?php else: ?>
-                <option value="">No donated books available</option>
-            <?php endif; ?>
-        </select>
-        <br><br>
+            </select>
+            <br><br>
 
-        <label for="new_title">New Title (Leave empty to keep current):</label>
-        <input type="text" name="new_title" id="new_title">
-        <br><br>
+            <label for="new_title">New Title (Leave empty to keep current):</label>
+            <input type="text" name="new_title" id="new_title">
+            <br><br>
 
-        <label for="new_author">New Author (Leave empty to keep current):</label>
-        <input type="text" name="new_author" id="new_author">
-        <br><br>
+            <label for="new_author">New Author (Leave empty to keep current):</label>
+            <input type="text" name="new_author" id="new_author">
+            <br><br>
 
-        <label for="new_isbn">New ISBN (Leave empty to keep current):</label>
-        <input type="number" name="new_isbn" id="new_isbn">
-        <br><br>
+            <label for="new_isbn">New ISBN (Leave empty to keep current):</label>
+            <input type="number" name="new_isbn" id="new_isbn">
+            <br><br>
 
-        <label for="new_genre">New Genre (Leave empty to keep current):</label>
-        <select name="new_genre" id="new_genre">
-            <option value="">Leave unchanged</option>
-            <option value="Fiction">Fiction</option>
-            <option value="Dystopian">Dystopian</option>
-            <option value="Adventure">Adventure</option>
-            <option value="Romance">Romance</option>
-            <option value="Horror">Horror</option>
-        </select>
-        <br><br>
+            <label for="new_genre">New Genre (Leave empty to keep current):</label>
+            <select name="new_genre" id="new_genre">
+                <option value="">Leave unchanged</option>
+                <option value="Fiction">Fiction</option>
+                <option value="Dystopian">Dystopian</option>
+                <option value="Adventure">Adventure</option>
+                <option value="Romance">Romance</option>
+                <option value="Horror">Horror</option>
+            </select>
+            <br><br>
 
-        <label for="new_publish_date">New Publish Date (Leave empty to keep current):</label>
-        <input type="date" name="new_publish_date" id="new_publish_date">
-        <br><br>
+            <label for="new_publish_date">New Publish Date (Leave empty to keep current):</label>
+            <input type="date" name="new_publish_date" id="new_publish_date">
+            <br><br>
 
-        <label for="new_publisher">New Publisher (Leave empty to keep current):</label>
-        <input type="text" name="new_publisher" id="new_publisher">
-        <br><br>
+            <label for="new_publisher">New Publisher (Leave empty to keep current):</label>
+            <input type="text" name="new_publisher" id="new_publisher">
+            <br><br>
 
-        <label for="new_book_cover">New Book Cover URL (Leave empty to keep current):</label>
-        <input type="text" name="new_book_cover" id="new_book_cover">
-        <br><br>
+            <label for="new_book_cover">New Book Cover URL (Leave empty to keep current):</label>
+            <input type="text" name="new_book_cover" id="new_book_cover">
+            <br><br>
 
-        <button type="submit">Update Book</button>
-        <button type="button" onclick="window.location.href='index.php';">Cancel</button>
-    </form>
+            <button type="submit">Update Book</button>
+            <button type="button" onclick="window.location.href='index.php';">Cancel</button>
+        </form>
+    <?php else: ?>
+        <p>No books available to update.</p>
+    <?php endif; ?>
+
 </body>
 </html>
