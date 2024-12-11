@@ -41,6 +41,7 @@ $total_row = $total_result->fetch_assoc();
 $total_books = $total_row['total'];
 $total_pages = ceil($total_books / $limit);
 
+$total_penalty=0;
 // Check for overdue rentals and calculate penalties
 if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
@@ -59,7 +60,6 @@ if (isset($_SESSION['user_id'])) {
 
     // If the user has overdue rentals, calculate the penalty
     if ($penalty_result->num_rows > 0) {
-        $total_penalty = 0;
         while ($penalty = $penalty_result->fetch_assoc()) {
             $overdue_days = $penalty['overdue_days'];
             $total_penalty += $overdue_days * 2; // $2 per day overdue
@@ -72,6 +72,8 @@ if (isset($_SESSION['user_id'])) {
         $_SESSION['penalty_message'] = $penalty_message;
     }
 }
+
+$_SESSION['total_penalty']=$total_penalty;
 
 $conn->close();
 ?>
