@@ -12,9 +12,10 @@ h1 {
     text-align: center;
 }
 
-h2 {
+h3 {
     color: #333;
     font-size: 20px;
+    text-align:center;
 }
 
 table {
@@ -95,5 +96,23 @@ p {
 }
 
 .home-button {
-    margin-left:900px;
+    margin-left:0px;
+}
+
+form{
+    max-width:400px;
+    margin-bottom:30px;
+    margin-left:270px;
+    display:inline;
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+form input{
+    padding:8px;
+}
+
+form button{
+    min-width:150px;
 }
