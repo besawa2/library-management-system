@@ -2,7 +2,6 @@ DROP DATABASE IF EXISTS library_management_system;
 CREATE DATABASE library_management_system;
 USE library_management_system;
 
-DROP TABLE IF EXISTS penalties;
 DROP TABLE IF EXISTS reservations;
 DROP TABLE IF EXISTS rentals;
 DROP TABLE IF EXISTS user_profile;
@@ -78,14 +77,4 @@ CREATE TABLE reservations (
     ReserveEndDate DATE, 
     FOREIGN KEY (BookID) REFERENCES books(BookID), 
     FOREIGN KEY (UserID) REFERENCES user(UserID)
-); 
-
-CREATE TABLE penalties ( 
-    PenaltyID INT AUTO_INCREMENT PRIMARY KEY, 
-    BookID INT, 
-    UserID INT, 
-    PenaltyDate DATE, 
-    PenaltyAmt DECIMAL(10,2), 
-    FOREIGN KEY (BookID) REFERENCES books(BookID), 
-    FOREIGN KEY (UserID) REFERENCES user(UserID) 
 ); 

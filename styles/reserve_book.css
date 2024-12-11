@@ -1,0 +1,86 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: #f9f9f9;
+}
+
+h2 {
+    text-align: center;
+    color: #4CAF50;
+    font-size: 24px;
+    padding: 10px 0;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 20px auto;
+}
+
+select, input[type="submit"], button {
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 8px 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+select {
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+}
+
+input[type="submit"], button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover, button:hover {
+    background-color: #45a049;
+}
+
+button {
+    background-color: #f44336;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #914747;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    font-size: 18px;
+    text-align: center;
+}
+
+table th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+table td {
+    background-color: #fff;
+}

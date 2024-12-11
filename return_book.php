@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['return_book'])) {
 
         $conn->commit();
 
-        $_SESSION['message'] = "Book returned and status updated successfully!";
+        $_SESSION['message'] = "Book returned successfully!";
     } catch (Exception $e) {
         $conn->rollback();
         $_SESSION['error'] = $e->getMessage();
