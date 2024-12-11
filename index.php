@@ -144,7 +144,7 @@ $conn->close();
                           <p>{$row['title']}<br><small>{$row['author']}</small></p>
                           <form action='rent_book.php' method='POST'>
                               <input type='hidden' name='book_id' value='{$row['BookID']}' />
-                              <button type='submit'>Rent This Book</button>
+                              <button type='submit' name='rentbutton' >Rent This Book</button>
                           </form>
                       </td>";
                   $counter++;

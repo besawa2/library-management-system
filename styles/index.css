@@ -57,7 +57,7 @@ body {
     width: 12%;
     background-color: #e2e2e2;
     padding: 20px;
-    height: 100%;
+    height: 146%;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -89,7 +89,7 @@ table td {
     border: 1px solid #ddd;
     padding: 15px;
     font-size: 18px;
-    text-align: left;
+    text-align: center;
     height: 50px;
 }
 
@@ -104,4 +104,37 @@ a {
 
 a img {
     cursor: pointer;  /* Change cursor to indicate that the image is clickable */
+}
+.pagination-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 25px;  /* Adjust padding to make the buttons bigger */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;  /* Increase the font size */
+    text-decoration: none; /* Removes the underline */
+    display: inline-block;  /* Ensures buttons are inline */
+    margin: 10px;  /* Adds space between the buttons */
+}
+
+.pagination-button:hover {
+    background-color: #45a049;
+}
+
+p {
+    text-align:center;
+}
+button {
+    padding: 10px 20px;
+    background-color: #337735;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    position: top;
+}
+
+button:hover {
+    background-color: #1f4420;
 }

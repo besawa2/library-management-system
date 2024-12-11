@@ -62,7 +62,7 @@ body {
 }
 
 .content th {
-    background-color: #4CAF50;
+    background-color: #337735;
     color: white;
 }
 
@@ -78,7 +78,7 @@ form {
 
 button {
     padding: 10px 20px;
-    background-color: #4CAF50;
+    background-color: #337735;
     color: white;
     border: none;
     cursor: pointer;
@@ -87,5 +87,5 @@ button {
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #1f4420;
 }
