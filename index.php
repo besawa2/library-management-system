@@ -105,9 +105,14 @@ $conn->close();
         <p style="color: red;"><?php echo $_SESSION['penalty_message']; unset($_SESSION['penalty_message']); ?></p>
     <?php endif; ?>
     <?php if (isset($_SESSION['username'])): ?>
-        <span style="float:right;">Welcome, <?= htmlspecialchars($_SESSION['username']); ?>
-        | <button style="background-color: <?php echo $total_penalty>0 ? 'green' : 'transparent'; ?>" class="notification" onclick="window.location.href='notifications.php';"><span class="notification">🔔</span></button>
-        | <a href="logout.php">Logout</a></span>
+        <span style="float:right;">
+            Welcome, <?= htmlspecialchars($_SESSION['username']); ?>
+            | <button style="background-color: <?php echo $total_penalty > 0 ? 'green' : 'transparent'; ?>" class="notification" onclick="window.location.href='notifications.php';">
+                <span class="notification">🔔</span>
+            </button>
+            | <a href="logout.php">Logout</a>
+        </span>
+    <?php else: ?>
         <button class="login-button" onclick="window.location.href='login.php'">Login</button>
     <?php endif; ?>
 </div>
