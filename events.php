@@ -35,7 +35,6 @@ $result=$conn->query($sql);
                     <th>Start Date</th>
                     <th>End Date</th>
                     <th>Location</th>
-                    <th>Actions</th>
             </thead>
             <tbody>
                 <?php while ($event=$result->fetch_assoc()):?>

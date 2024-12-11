@@ -105,8 +105,9 @@ $conn->close();
         <p style="color: red;"><?php echo $_SESSION['penalty_message']; unset($_SESSION['penalty_message']); ?></p>
     <?php endif; ?>
     <?php if (isset($_SESSION['username'])): ?>
-        <span style="float:right;">Welcome, <?= htmlspecialchars($_SESSION['username']); ?> | <a href="logout.php">Logout</a></span>
-    <?php else: ?>
+        <span style="float:right;">Welcome, <?= htmlspecialchars($_SESSION['username']); ?>
+        | <button style="background-color: <?php echo $total_penalty>0 ? 'green' : 'transparent'; ?>" class="notification" onclick="window.location.href='notifications.php';"><span class="notification">🔔</span></button>
+        | <a href="logout.php">Logout</a></span>
         <button class="login-button" onclick="window.location.href='login.php'">Login</button>
     <?php endif; ?>
 </div>
@@ -128,6 +129,9 @@ $conn->close();
             <button class="sidegrid-button" onclick="window.location.href='donate_books.php'; return false;">Donate Books</button>
             <button class="sidegrid-button" onclick="window.location.href='rentals.php'; return false;">Current Rentals</button>
             <button class="sidegrid-button" onclick="window.location.href='events.php'; return false;">Library Events</button>
+            <?php if (isset($_SESSION['username']) && $_SESSION['username'] === 'admin'): ?>
+                <button class="sidegrid-button" onclick="window.location.href='staff.php'; return false;">Staff</button>
+            <?php endif; ?> 
         </form>
     </div>
 
