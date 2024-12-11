@@ -14,7 +14,6 @@ INSERT INTO user (UserID, username, password, Name) VALUES (3, 'admin', '$2y$10$
 INSERT INTO user (UserID, username, password, Name) VALUES (4, 'user4', 'password4', 'Alice Johnson');
 INSERT INTO user (UserID, username, password, Name) VALUES (5, 'user5', 'password5', 'Michael Green');
 INSERT INTO user (UserID, username, password, Name) VALUES (6, 'user6', 'password6', 'Linda White');
-INSERT INTO user (UserID, username, password, Name) VALUES (99, 'admin', 'admin', 'administrator');
 
 INSERT INTO books VALUES (1, 'To Kill a Mockingbird', 'Harper Lee', 'Fiction', '9780060935467', '1960-07-11', 'J.B. Lippincott & Co.', 'https://upload.wikimedia.org/wikipedia/commons/4/4f/To_Kill_a_Mockingbird_%28first_edition_cover%29.jpg', 'rented');
 INSERT INTO books VALUES (2, 'The Catcher in the Rye', 'J.D. Salinger', 'Fiction', '9780316769488', '1951-07-16', 'Little, Brown and Company', 'https://m.media-amazon.com/images/I/8125BDk3l9L._AC_UF894,1000_QL80_.jpg', 'rented');
