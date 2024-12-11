@@ -10,7 +10,7 @@ DELETE FROM books;
 
 INSERT INTO user (UserID, username, password, Name) VALUES (1, 'overdue', '$2y$10$.xPPzcnWsDEGLOhyfISuWucybmPADLoh9DOByQ29z6CzsptZwmvoq', 'Overdue Owen');
 INSERT INTO user (UserID, username, password, Name) VALUES (2, 'test', '$2y$10$hfOy.ORsX8PgRdR9TkY42ee.H4eDxC0kX3bYJTFgfvFp6nACfp0rq', 'test');
-INSERT INTO user (UserID, username, password, Name) VALUES (3, 'user3', 'password2', 'Jane Doe');
+INSERT INTO user (UserID, username, password, Name) VALUES (3, 'admin', '$2y$10$7KCFbC3ycffbSC4OMQ7RNu4z9XXY1Q3b.6NM5gz1hpr/XR3Y2PP9K', 'admin');
 INSERT INTO user (UserID, username, password, Name) VALUES (4, 'user4', 'password4', 'Alice Johnson');
 INSERT INTO user (UserID, username, password, Name) VALUES (5, 'user5', 'password5', 'Michael Green');
 INSERT INTO user (UserID, username, password, Name) VALUES (6, 'user6', 'password6', 'Linda White');
