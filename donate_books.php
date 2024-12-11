@@ -12,52 +12,87 @@ if ($conn->connect_error) {
     die("Database connection failed: " . $conn->connect_error);
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_book'])) {
-    $book_id = $_POST['book_id'];
-    $new_title = trim($_POST['new_title']);
-    $new_author = trim($_POST['new_author']);
-    $new_isbn = trim($_POST['new_isbn']);
-    $new_genre = trim($_POST['new_genre']);
-    $new_publish_date = trim($_POST['new_publish_date']);
-    $new_publisher = trim($_POST['new_publisher']);
-    $new_book_cover = trim($_POST['new_book_cover']);
+// Default book cover URL
+$default_cover = "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781787550360/classic-book-cover-foiled-journal-9781787550360_hr.jpg";
 
-    $current_query = $conn->prepare("SELECT Title, Author, ISBN, Genre, PublishDate, Publisher, BookCover FROM books WHERE BookID = ?");
-    $current_query->bind_param("i", $book_id);
-    $current_query->execute();
-    $current_result = $current_query->get_result();
-    $current_book = $current_result->fetch_assoc();
-    $current_query->close();
+// Handle book donation or update
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $conn->begin_transaction();
 
-    $title = empty($new_title) ? $current_book['Title'] : $new_title;
-    $author = empty($new_author) ? $current_book['Author'] : $new_author;
-    $isbn = empty($new_isbn) ? $current_book['ISBN'] : $new_isbn;
-    $genre = empty($new_genre) ? $current_book['Genre'] : $new_genre;
-    $publish_date = empty($new_publish_date) ? $current_book['PublishDate'] : $new_publish_date;
-    $publisher = empty($new_publisher) ? $current_book['Publisher'] : $new_publisher;
-    $book_cover = empty($new_book_cover) ? $current_book['BookCover'] : $new_book_cover;
+    try {
+        // Check if this is a donation or update request
+        if (isset($_POST['title']) && isset($_POST['author'])) {
+            // Donation: Insert new book
+            $title = trim($_POST['title']);
+            $author = trim($_POST['author']);
+            $isbn = trim($_POST['isbn']);
+            $genre = trim($_POST['genre']);
+            $publish_date = trim($_POST['publish_date']);
+            $publisher = trim($_POST['publisher']);
+            $book_cover = trim($_POST['book_cover']);
 
-    if (empty($title) || empty($author) || empty($isbn)) {
-        $_SESSION['error'] = "Title, Author, and ISBN are required fields for updating.";
-    } else {
-        $update_query = $conn->prepare("
-            UPDATE books 
-            SET Title = ?, Author = ?, ISBN = ?, Genre = ?, PublishDate = ?, Publisher = ?, BookCover = ? 
-            WHERE BookID = ?
-        ");
-        $update_query->bind_param("sssssssi", $title, $author, $isbn, $genre, $publish_date, $publisher, $book_cover, $book_id);
+            // If no cover URL is provided, use the default cover
+            $book_cover = empty($book_cover) ? $default_cover : $book_cover;
 
-        if ($update_query->execute()) {
+            // Validate required fields
+            if (empty($title) || empty($author) || empty($isbn)) {
+                throw new Exception("Title, Author, and ISBN are required fields.");
+            }
+
+            // Prepare query to insert the donated book into the database
+            $donate_query = $conn->prepare("
+                INSERT INTO books (Title, Author, ISBN, Genre, PublishDate, Publisher, BookCover, BookStatus)
+                VALUES (?, ?, ?, ?, ?, ?, ?, 'available')
+            ");
+            $donate_query->bind_param("sssssss", $title, $author, $isbn, $genre, $publish_date, $publisher, $book_cover);
+
+            if (!$donate_query->execute()) {
+                throw new Exception("Error donating book: " . $conn->error);
+            }
+
+            $_SESSION['message'] = "Book donated successfully!";
+            $donate_query->close();
+        } elseif (isset($_POST['book_id'])) {
+            // Update: Update existing book
+            $book_id = $_POST['book_id'];
+            $new_title = trim($_POST['new_title']);
+            $new_author = trim($_POST['new_author']);
+            $new_isbn = trim($_POST['new_isbn']);
+            $new_genre = trim($_POST['new_genre']);
+            $new_publish_date = trim($_POST['new_publish_date']);
+            $new_publisher = trim($_POST['new_publisher']);
+            $new_book_cover = trim($_POST['new_book_cover']);
+
+            // If no new cover URL is provided, use the default cover
+            $new_book_cover = empty($new_book_cover) ? $default_cover : $new_book_cover;
+
+            // Prepare query to update the donated book
+            $update_query = $conn->prepare("
+                UPDATE books
+                SET Title = ?, Author = ?, ISBN = ?, Genre = ?, PublishDate = ?, Publisher = ?, BookCover = ?
+                WHERE BookID = ?
+            ");
+            $update_query->bind_param("sssssssi", $new_title, $new_author, $new_isbn, $new_genre, $new_publish_date, $new_publisher, $new_book_cover, $book_id);
+
+            if (!$update_query->execute()) {
+                throw new Exception("Error updating book: " . $conn->error);
+            }
+
             $_SESSION['message'] = "Book updated successfully!";
-        } else {
-            $_SESSION['error'] = "Error updating book: " . $conn->error;
+            $update_query->close();
         }
 
-        $update_query->close();
+        // Commit the transaction
+        $conn->commit();
+        header("Location: index.php");
+        exit();
+    } catch (Exception $e) {
+        // Rollback the transaction on error
+        $conn->rollback();
+        $_SESSION['error'] = $e->getMessage();
+        header("Location: index.php");
+        exit();
     }
-
-    header("Location: index.php");
-    exit();
 }
 
 // Fetch books with BookID > 24 for the update dropdown
@@ -173,7 +208,7 @@ $conn->close();
         <input type="text" name="new_book_cover" id="new_book_cover">
         <br><br>
 
-        <button type="submit" name="update_book">Update Book</button>
+        <button type="submit">Update Book</button>
         <button type="button" onclick="window.location.href='index.php';">Cancel</button>
     </form>
 </body>

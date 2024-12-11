@@ -18,14 +18,12 @@ $offset = ($page - 1) * $limit;
 
 $genre_filter = isset($_GET['genre']) ? $_GET['genre'] : '';
 
+// SQL Query to get available books with genre filter (if any)
 if ($genre_filter) {
     $sql = $conn->prepare("SELECT title, author, BookCover, BookID FROM books WHERE genre = ? AND BookStatus = 'available' LIMIT ?, ?");
     $sql->bind_param("sii", $genre_filter, $offset, $limit);
 } else {
     $sql = $conn->prepare("SELECT title, author, BookCover, BookID FROM books WHERE BookStatus = 'available' LIMIT ?, ?");
-    if ($sql === false) {
-      die('Error preparing statement: ' . $conn->error);
-  }
     $sql->bind_param("ii", $offset, $limit);
 }
 
@@ -43,12 +41,47 @@ $total_row = $total_result->fetch_assoc();
 $total_books = $total_row['total'];
 $total_pages = ceil($total_books / $limit);
 
+// Check for overdue rentals and calculate penalties
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+    $penalty_message = ''; // Default message
+
+    // Query for overdue rentals
+    $penalty_query = $conn->prepare("
+        SELECT r.RentalID, b.Title, r.DueDate, DATEDIFF(CURRENT_DATE, r.DueDate) AS overdue_days
+        FROM rentals r
+        JOIN books b ON r.BookID = b.BookID
+        WHERE r.UserID = ? AND r.DateReturned IS NULL AND r.DueDate < CURRENT_DATE
+    ");
+    $penalty_query->bind_param("i", $user_id);
+    $penalty_query->execute();
+    $penalty_result = $penalty_query->get_result();
+
+    // If the user has overdue rentals, calculate the penalty
+    if ($penalty_result->num_rows > 0) {
+        $total_penalty = 0;
+        while ($penalty = $penalty_result->fetch_assoc()) {
+            $overdue_days = $penalty['overdue_days'];
+            $total_penalty += $overdue_days * 2; // $2 per day overdue
+        }
+        $penalty_message = "You have overdue rentals. You owe $" . $total_penalty . " for late returns.";
+    }
+
+    // Store penalty message in session if exists
+    if ($penalty_message) {
+        $_SESSION['penalty_message'] = $penalty_message;
+    }
+}
+
 $conn->close();
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
     <link rel="stylesheet" href="styles/index.css">
     <style>
         img {
@@ -67,6 +100,9 @@ $conn->close();
     <?php endif; ?>
     <?php if (isset($_SESSION['error'])): ?>
         <p style="color: red;"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></p>
+    <?php endif; ?>
+    <?php if (isset($_SESSION['penalty_message'])): ?>
+        <p style="color: red;"><?php echo $_SESSION['penalty_message']; unset($_SESSION['penalty_message']); ?></p>
     <?php endif; ?>
     <?php if (isset($_SESSION['username'])): ?>
         <span style="float:right;">Welcome, <?= htmlspecialchars($_SESSION['username']); ?> | <a href="logout.php">Logout</a></span>
@@ -104,7 +140,7 @@ $conn->close();
                             <img src='{$row['BookCover']}' alt='{$row['title']} cover'>
                             <p>{$row['title']}<br><small>{$row['author']}</small></p>
                             <form action='rent_book.php' method='POST'>
-                                <input type='hidden' name='book_id' value='{$row['BookID']}'>
+                                <input type='hidden' name='book_id' value='{$row['BookID']}' />
                                 <button type='submit'>Rent This Book</button>
                             </form>
                         </td>";

@@ -50,6 +50,7 @@ $books = $conn->query($books_query);
 <html>
 <head>
     <title>Reserve a Book</title>
+    <link rel="stylesheet" href="styles/reserve_book.css">
 </head>
 <body>
     <h2>Reserve a Book</h2>
@@ -88,16 +89,17 @@ $books = $conn->query($books_query);
                         <td>
                             <form action='delete_reservation.php' method='POST' style='display:inline;'>
                                 <input type='hidden' name='reservation_id' value='{$reservation['ReserveID']}'>
-                                <input type='submit' value='Cancel Reservation'>
+                                <input type='submit' value='Cancel Reservation' class='cancel-button'>
                             </form>
                         </td>
-                      </tr>";
+                    </tr>";
             }
         } else {
-            echo "<tr><td colspan='3'>No active reservations</td></tr>";
+            echo "<tr><td colspan='3' style='text-align: center;'>No active reservations</td></tr>";
         }
         ?>
     </table>
+
 </body>
 </html>
 
