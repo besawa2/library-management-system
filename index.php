@@ -64,7 +64,7 @@ if (isset($_SESSION['user_id'])) {
             $overdue_days = $penalty['overdue_days'];
             $total_penalty += $overdue_days * 2; // $2 per day overdue
         }
-        $penalty_message = "You have overdue rentals. You owe $" . $total_penalty . " for late returns.";
+        $penalty_message = "You have overdue rentals.";
     }
 
     // Store penalty message in session if exists

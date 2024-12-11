@@ -1,0 +1,103 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+h2 {
+    color: #333;
+    font-size: 20px;
+}
+
+/* Table Styles */
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+thead {
+    background-color: #28a745; /* Green header */
+    color: white;
+    font-size: 16px;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Penalty column */
+td:nth-child(6) {
+    color: #d32f2f; /* Red for overdue penalties */
+    font-weight: bold;
+}
+
+/* Form and Buttons */
+button {
+    background-color: #28a745; /* Green buttons */
+    color: white;
+    padding: 8px 15px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+button:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+button[type="button"] {
+    background-color: #f44336; /* Red for cancel button */
+}
+
+button[type="button"]:hover {
+    background-color: #d32f2f; /* Darker red for cancel button */
+}
+
+/* Back button */
+button[type="button"] {
+    display: inline-block;
+    width: auto;
+}
+
+/* Message for no rentals */
+p {
+    font-size: 16px;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    table {
+        width: 90%;
+    }
+
+    button {
+        width: 100%;
+        margin-top: 10px;
+    }
+}

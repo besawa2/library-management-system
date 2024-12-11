@@ -51,6 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html>
 <head>
   <title>Register</title>
+  <link rel="stylesheet" href="styles/register.css">
 </head>
 <body>
   <h2>Registration Page</h2>

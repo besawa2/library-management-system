@@ -106,6 +106,7 @@ $conn->close();
 <html>
 <head>
     <title>Donate or Update Books</title>
+    <link rel="stylesheet" href="styles/donate_books.css">
 </head>
 <body>
     <h1>Donate a Book</h1>

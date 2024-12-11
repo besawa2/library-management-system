@@ -40,6 +40,8 @@ $penalty_rate = 1; // Penalty per day in dollars
 <html>
 <head>
     <title>Your Current Rentals</title>
+    <link rel="stylesheet" href="styles/rentals.css">
+
 </head>
 <body>
     <h1>Current Book Rentals</h1>
