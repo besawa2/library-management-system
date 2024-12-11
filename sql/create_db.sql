@@ -78,3 +78,14 @@ CREATE TABLE reservations (
     FOREIGN KEY (BookID) REFERENCES books(BookID), 
     FOREIGN KEY (UserID) REFERENCES user(UserID)
 ); 
+
+CREATE TABLE reviews(
+    ReviewID INT AUTO_INCREMENT PRIMARY KEY,
+    BookID INT,
+    UserID INT,
+    ReviewText TEXT,
+    RATING INT,
+    ReviewDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (BookID) REFERENCES books(BookID), 
+    FOREIGN KEY (UserID) REFERENCES user(UserID)
+);

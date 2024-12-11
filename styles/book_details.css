@@ -91,3 +91,19 @@ button {
 button:hover {
     background-color: #1f4420;
 }
+
+.recommendations {
+    display:flex;
+    justify-content:space-around;
+    gap:20px;
+}
+
+.book-suggest img {
+    width:120px;
+    height:auto;
+}
+
+.book-suggest p {
+    font-size:14px;
+    margin-top:5px;
+}
