@@ -17,6 +17,8 @@ if ($conn->connect_error) {
     die("Database connection failed: " . $conn->connect_error);
 }
 
+$total_penalty=0;
+
 if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
     $penalty_message = '';
