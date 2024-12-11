@@ -133,23 +133,25 @@ $conn->close();
     <div class="content">
         <table>
             <tr>
-                <?php 
-                $counter = 0; 
-                while ($row = $result->fetch_assoc()) { 
-                    echo "<td>
-                            <img src='{$row['BookCover']}' alt='{$row['title']} cover'>
-                            <p>{$row['title']}<br><small>{$row['author']}</small></p>
-                            <form action='rent_book.php' method='POST'>
-                                <input type='hidden' name='book_id' value='{$row['BookID']}' />
-                                <button type='submit'>Rent This Book</button>
-                            </form>
-                        </td>";
-                    $counter++;
-                    if ($counter % 3 == 0 && $counter != $limit) {
-                        echo "</tr><tr>";
-                    }
-                } 
-                ?>
+            <?php 
+              $counter = 0; 
+              while ($row = $result->fetch_assoc()) { 
+                  echo "<td>
+                          <a href='book_details.php?book_id={$row['BookID']}'>
+                              <img src='{$row['BookCover']}' alt='{$row['title']} cover'>
+                          </a>
+                          <p>{$row['title']}<br><small>{$row['author']}</small></p>
+                          <form action='rent_book.php' method='POST'>
+                              <input type='hidden' name='book_id' value='{$row['BookID']}' />
+                              <button type='submit'>Rent This Book</button>
+                          </form>
+                      </td>";
+                  $counter++;
+                  if ($counter % 3 == 0 && $counter != $limit) {
+                      echo "</tr><tr>";
+                  }
+              } 
+            ?>
             </tr>
         </table>
 
