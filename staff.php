@@ -30,6 +30,7 @@ $result=$conn->query($sql);
 <html>
 <head>
     <title>Staff</title>
+    <link rel="stylesheet" href="styles/staff.css">
 </head>
 <body>
     <h1>Staff Members</h1>
@@ -52,7 +53,7 @@ $result=$conn->query($sql);
         </tbody>
     </table>
     <br>
-    <button onclick="window.location.href='index.php';">Back to Home</button>
+    <button class="home-button" onclick="window.location.href='index.php';">Back to Home</button>
 </body>
 </html>
 

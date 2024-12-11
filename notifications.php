@@ -54,6 +54,7 @@ $conn->close();
 <html>
 <head>
     <title>Notifications</title>
+    <link rel="stylesheet" href="styles/notifications.css">
 </head>
 <body>
     <h1>Notifications</h1>
@@ -65,6 +66,7 @@ $conn->close();
         <p>You have no overdue rentals and no penalties.</p>
     <?php endif; ?>
     <br>
-    <button onclick="window.location.href='index.php';">Back to Home</button>
+    <br>
+    <button class="home-button" onclick="window.location.href='index.php';">Back to Home</button>
 </body>
 </html>
